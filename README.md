@@ -18,52 +18,40 @@ This is an end-to-end data engineering project built using:
 - Amazon S3 (data source simulation)
 
 The pipeline ingests raw CSV data representing trips and cities, processes it through multiple transformation layers, and produces curated datasets for regional performance analytics.
-![ ]()
+
+![ ](https://github.com/geoffreyrwamakuba-rgb/Spark-Declarative-Pipeline-Project/blob/a00f521355dfc2e9d10525cd4e1c14ce22511619/SDP_data_model.png)
+---
 
 ### 🏢 Business Scenario
-A global FMCG enterprise (**Atlikon**) acquired a nutrition startup (**SportsBar**).
 
-- **Atlikon** operates on a modern **Databricks Lakehouse**
-- **SportsBar** delivers raw **CSV files in AWS S3**
-- No unified or trusted view of **global revenue**
+GoodCabs is a fast-growing ride-hailing company operating across multiple cities. Each city functions as an independent region, managed by regional teams responsible for operational performance.
+
+As the business scales, these teams increasingly rely on timely, region-specific data to:
+- Monitor revenue and trip volume
+- Track customer and driver satisfaction
+- Identify underperforming regions
+However, the current data platform struggles to meet these needs efficiently.
 
 ### ❌ The Problem
-- Disparate data platforms  
-- Dirty, inconsistent schemas  
-- No incremental processing  
-- No enterprise-level governance  
+The existing system is built on procedural Spark pipelines with manual orchestration, leading to several issues:
 
-### ✅ The Solution
-Designed and implemented a **scalable, auditable, incremental ELT pipeline** that:
-- Ingests startup data from S3
-- Cleans and standardizes it
-- Merges it into the enterprise **Gold layer**
-- Produces a **single source of truth** for analytics
+- Delayed Data Delivery --> Regional teams are not receiving data on time, limiting decision-making speed
+- Lack of Regional Flexibility --> Dashboards are generic, forcing teams to manually extract and reshape data
+- Tightly Coupled Pipelines --> Changes are slow and difficult due to rigid pipeline design
+- Manual Workarounds --> Teams rely on Excel exports, increasing inefficiency and risk of errors
 
-
-## Key Features / Skills Demonstrated
-
-### Incremental Loading
-- Implemented **Staging Table Pattern**
-- Processes **only new daily files**
-- Recomputes monthly aggregates to handle **late-arriving data**
-
-### Data Quality & Schema Handling
-- Schema mismatches handled
-- City typos corrected
-- Implemented **Dictionary Mapping + Regex Cleaning**
-
-### Orchestration
-- Automated Databricks **DAGs**
-- Dependency-driven execution:
-  - Dimensions → Facts
-- Email/Slack alerting on failures
-
-### Auditability & Lineage
-- Metadata columns added:
-  - `ingestion_timestamp`
-  - `file source + name`
-- Enables full **data lineage & debugging**
+### ✅ The Solution / Key Benefits of SDP over Imperative Approach
+1. Automatic Orchestration
+   - No need for manual job scheduling or dependency management
+   - Pipelines are automatically executed in the correct order
+3. Incremental Processing
+   - Only new or updated data is processed
+   - Reduces compute cost and improves performance
+4. Declarative Simplicity
+   - Focus on business logic instead of pipeline control flow
+   - Cleaner, more maintainable code
+5. Faster Data Delivery --> Reduced latency enables near real-time regional insights
+6. Scalability & Flexibility --> Easier to adapt pipelines as business requirements evolve
 
 ---
 
