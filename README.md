@@ -58,22 +58,24 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 ## 📂 Repository Structure
 
 ```bash
-├── 01_setup/
-│   ├── 01_setup_catalog.sql              # Unity Catalog schemas & tables
-│   ├── 01_dim_date.py                    # Programmatic Date Dimension
-│   └── 03_utilities.py                   # Centralized configuration
+├── 01_project_setup/                     # Unity Catalog schemas & tables
 │
-├── 02_dimension_processing/
-│   ├── 1_customer_data_processing.py     # Customer cleaning & ID mapping
-│   ├── 2_product_data_processing.py      # Regex cleanup & hashing
-│   └── 3_pricing_data_processing.py      # Dirty dates & price versioning
+├── 02_bronze/
+│   ├── city.py 
+│   ├── trips.py     
 │
-├── 03_fact_processing/
-│   ├── 01_full_load_fact.py              # Historical load
-│   └── 02_incremental_load_fact.py       # Daily incremental upsert logic
+├── 03_silver/
+│   ├── calendar.py 
+│   ├── city.py 
+│   ├── trips.py
+│   ├── trips2.py     
 │
-├── 04_denormalized_view/
-│   ├── 01_denormalized_table_query.txt   # Combined columns
-│   └── 02_parent_incremental_load.txt    # Incremental load of parent data
-
+├── 04_gold/ 
+│   ├── city_views.sql
+│   ├── trips_gold.sql
+│
+├── 05_data/
+│   ├── trips   # csv files
+│   └── city    # csv files
+│
 └── README.md
