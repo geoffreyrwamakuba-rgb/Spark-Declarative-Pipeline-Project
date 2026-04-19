@@ -1,4 +1,4 @@
-# Spark-Declarative-Pipeline-Project
+# Spark Declarative Pipeline Project
 
 ## Executive Summary
 
@@ -58,7 +58,7 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 ## 📂 Repository Structure
 
 ```bash
-├── 01_project_setup/                     # Unity Catalog schemas & tables
+├── 01_project_setup/         # Unity Catalog schemas & tables
 │
 ├── 02_bronze/
 │   ├── city.py 
@@ -75,7 +75,7 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 │   ├── trips_gold.sql
 │
 ├── 05_data/
-│   ├── trips   # csv files
-│   └── city    # csv files
+│   ├── trips                 # csv files
+│   └── city                  # csv files
 │
 └── README.md
