@@ -5,7 +5,7 @@ from pyspark.sql.functions import *
 source_path = "s3://goodcabs-gr/data-store/city"
 
 # define function with decaroator
-#Writing @my_decorator is just a cleaner way of saying: 
+# Writing @my_decorator is just a cleaner way of saying: 
 # say_hello = my_decorator(say_hello), used for timers and "boilerplate" code
 
 # This approach will save you time as imperattive gets more complicated 
@@ -37,7 +37,5 @@ def city_bronze():
           withColumn("ingest_datetime",current_timestamp()))
     
     return df
-
-    
           
 
