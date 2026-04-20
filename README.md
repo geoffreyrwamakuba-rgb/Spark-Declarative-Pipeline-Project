@@ -59,7 +59,7 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 ## 📂 Repository Structure
 
 ```bash
-├── 01_project_setup/         # Initial setup of the Databricks environment - Unity Catalog schema
+├── 01_project_setup/        # Initial setup of the Databricks environment - Unity Catalog schema
 │
 ├── 02_bronze/
 │   ├── city.py              # Batch ingestion of raw city data into Bronze Delta table from S3
@@ -72,7 +72,7 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 │   ├── trips2.py            # Implements CDC-based upsert into Silver trips table using SDP
 │  
 ├── 04_gold/ 
-│   ├── trips_gold.sql       # Builds final fact table for analytics│
+│   ├── trips_gold.sql       # Builds final fact table for analytics
 │   ├── city_views.sql       # Creates city-level aggregated views
 │
 ├── 05_data/
