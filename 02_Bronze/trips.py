@@ -23,9 +23,9 @@ def trips_bronze():
         .option("cloudFiles.format","csv")
         .option("cloudFiles.inferColumnTypes","true")
         .option("cloudFiles.schemaEvolutionMode","rescue")
-        # No failure with scheam changes --> rescue column created, (like mode=PERMISSIVE with spark.read)
+        # No failure with schema changes --> rescue column created, (like mode=PERMISSIVE with spark.read)
         .option("cloudFiles.maxFilesPerTrigger",100)
-        #Max of 100 files processed in this run 
+        # Max of 100 files processed in this run 
         .load(source_path)
         )
     df = df.withColumnRenamed("distance_travelled(km)","distance_travelled_km")
