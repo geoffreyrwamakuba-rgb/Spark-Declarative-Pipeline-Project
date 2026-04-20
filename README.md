@@ -59,24 +59,24 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 ## 📂 Repository Structure
 
 ```bash
-├── 01_project_setup/         # Unity Catalog schemas & tables
+├── 01_project_setup/         # Initial setup of the Databricks environment - Unity Catalog schema
 │
 ├── 02_bronze/
-│   ├── city.py 
-│   ├── trips.py     
+│   ├── city.py              # Batch ingestion of raw city data into Bronze Delta table from S3
+│   ├── trips.py             # Streaming ingestion of trips data using Auto Loader
 │
 ├── 03_silver/
-│   ├── calendar.py 
-│   ├── city.py 
-│   ├── trips.py
-│   ├── trips2.py     
-│
+│   ├── calendar.py          # Dynamically generates a date dimension table
+│   ├── city.py              # Cleans and standardises city dimension data
+│   ├── trips.py             # Applies data quality expectations + Standardises schema and column names
+│   ├── trips2.py            # Implements CDC-based upsert into Silver trips table using SDP
+│  
 ├── 04_gold/ 
-│   ├── city_views.sql
-│   ├── trips_gold.sql
+│   ├── trips_gold.sql       # Builds final fact table for analytics│
+│   ├── city_views.sql       # Creates city-level aggregated views
 │
 ├── 05_data/
-│   ├── trips                 # csv files
-│   └── city                  # csv files
+│   ├── trips                # Raw trips CSV files (full + incremental loads)
+│   └── city                 # Raw city dimension data
 │
-└── README.md
+└── README.md               
