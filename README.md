@@ -30,6 +30,7 @@ As the business scales, these teams increasingly rely on timely, region-specific
 - Monitor revenue and trip volume
 - Track customer and driver satisfaction
 - Identify underperforming regions
+
 However, the current data platform struggles to meet these needs efficiently.
 
 ### ❌ The Problem
