@@ -57,26 +57,33 @@ The existing system is built on procedural Spark pipelines with manual orchestra
 ---
 
 ## 📂 Repository Structure
+```
+youtube-data-pipeline-2026/
+│
+├── lambdas/
+│   ├── youtube_api_integstion/        # Ingestion Lambda
+│   │   └── lambda_function.py         # Fetches trending videos & categories from YouTube API
+│   └── json_to_parquet/               # Reference data transformation Lambda
+│       └── lambda_function.py         # Converts JSON category mappings to Parquet
+│
+├── glue_jobs/
+│   ├── bronze_to_silver_statistics.py # PySpark job: raw data → cleansed statistics
+│   └── silver_to_gold_analytics.py    # PySpark job: cleansed data → business aggregations
+│
+├── data_quality/
+│   └── dq_lambda.py                   # Data quality validation Lambda
+│
+├── step_functions/
+│   └── pipeline_orchestation.json     # Step Functions state machine definition
+│
+├── scripts/
+│   ├── aws_copy.sh                    # Upload historical data to Bronze S3 bucket
+│   └── information.md                 # AWS resource names & configuration reference
+│
+├── data/                              # Reference & historical data
+│   ├── {region}videos.csv             # Kaggle trending video datasets (10 regions)
+│   └── {region}_category_id.json      # YouTube category ID mappings (10 regions)
+│
+└── Images.png                         # Supporting diagrams
+```
 
-```bash
-├── 01_project_setup/        # Initial setup of the Databricks environment - Unity Catalog schema
-│
-├── 02_bronze/
-│   ├── city.py              # Batch ingestion of raw city data into Bronze Delta table from S3
-│   ├── trips.py             # Streaming ingestion of trips data using Auto Loader
-│
-├── 03_silver/
-│   ├── calendar.py          # Dynamically generates a date dimension table
-│   ├── city.py              # Cleans and standardises city dimension data
-│   ├── trips.py             # Applies data quality expectations + Standardises schema and column names
-│   ├── trips2.py            # Implements CDC-based upsert into Silver trips table using SDP
-│  
-├── 04_gold/ 
-│   ├── trips_gold.sql       # Builds final fact table for analytics
-│   ├── city_views.sql       # Creates city-level aggregated views
-│
-├── 05_data/
-│   ├── trips                # Raw trips CSV files (full + incremental loads)
-│   └── city                 # Raw city dimension data
-│
-└── README.md               
